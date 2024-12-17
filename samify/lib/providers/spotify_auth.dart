@@ -3,8 +3,8 @@
 // import 'dart:convert';
 
 // class SpotifyAuth {
-//   static const String _clientId = 'c337735e2eb84ab9a5a5c5054847b4ee';
-//   static const String _clientSecret = 'cce105c24dd14cbbbf65d028e08c315a';
+//   static const String _clientId = '*********';
+//   static const String _clientSecret = '*******';
 //   static const String _redirectUri = 'https://samify.com/redirect';
 //   static const String _authUrl = 'https://accounts.spotify.com/authorize';
 //   static const String _tokenUrl = 'https://accounts.spotify.com/api/token';
