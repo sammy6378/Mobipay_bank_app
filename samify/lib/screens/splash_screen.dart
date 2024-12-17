@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:samify/screens/auth/landing_screen.dart';
+import 'package:samify/screens/landing_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

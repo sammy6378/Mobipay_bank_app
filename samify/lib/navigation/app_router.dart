@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../screens/auth/landing_screen.dart';
-import '../screens/auth/sign_in_screen.dart';
-import '../screens/auth/sign_up_screen.dart';
-import '../screens/home/home_screen.dart';
+import '../screens/landing_screen.dart';
+import '../screens/sign_in_screen.dart';
+import '../screens/sign_up_screen.dart';
+import '../navigation/navigation_menu.dart';
 import 'app_routes.dart';
 
 class AppRouter {
@@ -28,7 +28,7 @@ class AppRouter {
 
         case AppRoutes.homePage:
         return MaterialPageRoute(
-          builder: (_) =>  const HomeScreen(),
+          builder: (_) =>  const NavigationMenu(),
           settings: settings,
         );
 

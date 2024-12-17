@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MusicPlayerPage extends StatefulWidget {
-  const MusicPlayerPage({Key? key}) : super(key: key);
+  const MusicPlayerPage({super.key});
 
   @override
   _MusicPlayerPageState createState() => _MusicPlayerPageState();

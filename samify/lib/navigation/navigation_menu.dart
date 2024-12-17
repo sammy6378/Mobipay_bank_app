@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:samify/widgets/home/recommended_songs.dart';
-import 'package:samify/widgets/home/trending_songs.dart';
-import 'package:samify/widgets/player/mini_player.dart';
-import 'package:samify/widgets/home/music_player.dart';
+import 'package:samify/widgets/playlists/components/music_wrapper.dart';
+import 'package:samify/widgets/playlists/music_player.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class NavigationMenu extends StatefulWidget {
+  const NavigationMenu({super.key});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<NavigationMenu> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    const TrendingSongs(),
-    const RecommendedSongs(),
+    const MusicWrapper(),
     const MusicPlayerPage(), 
   ];
 
@@ -32,12 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
             index: _currentIndex,
             children: _pages,
           ),
-          const Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: MiniPlayer(),
-          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -49,17 +40,18 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: const [
           BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.trending_up),
             label: 'Trending',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.recommend),
-            label: 'Recommended',
+            label: 'PlayList',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.music_note),
-            label: 'Player',
-          ),
+          
         ],
       ),
     );
