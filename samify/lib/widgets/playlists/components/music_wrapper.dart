@@ -19,7 +19,7 @@ class MusicWrapper extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-             TrendingSongs(),
+             const TrendingSongs(),
               const RecommendedSongs(),
               MyFavorites()
             ],

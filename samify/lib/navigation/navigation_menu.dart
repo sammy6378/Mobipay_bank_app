@@ -14,7 +14,7 @@ class _HomeScreenState extends State<NavigationMenu> {
 
   final List<Widget> _pages = [
     const MusicWrapper(),
-    const MusicPlayerPage(), 
+    // const MusicPlayerPage(), 
   ];
 
   @override

@@ -5,8 +5,8 @@ class SpotifyService {
   static const String _baseUrl = 'https://api.spotify.com/v1';
   static const String _authUrl = 'https://accounts.spotify.com/api/token';
 
-  static const String _clientId = '6736e9b1627f430bb98bad762de8e6ae';
-  static const String _clientSecret = '955b702e5c294cdfb9d76fb8b1da06b2';
+  static const String _clientId = '';
+  static const String _clientSecret = '';
 
   // Function to fetch the access token
   static Future<String> _getAccessToken() async {

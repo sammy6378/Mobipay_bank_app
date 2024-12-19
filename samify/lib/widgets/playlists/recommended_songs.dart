@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:samify/providers/spotify_service.dart';
 import './components/trending_card.dart';
+import './music_player.dart';
 
 class RecommendedSongs extends StatefulWidget {
   const RecommendedSongs({super.key});
@@ -17,6 +18,20 @@ class _RecommendedSongsState extends State<RecommendedSongs> {
     super.initState();
     recommendedSongs = SpotifyService.getRecommendedSongs();
   }
+
+  void _navigateToMusicPlayerPage(Map<String, String> song) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => MusicPlayerPage(
+        songTitle: song['name']!, // Use the song title from your list
+        artistName: song['artist']!, // Use the artist name from your list
+        imageUrl: song['image']!, // Use the image URL from your list
+        audioUrl: song['audioUrl']!, // The actual song URL to play
+      ),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +68,9 @@ class _RecommendedSongsState extends State<RecommendedSongs> {
                     songName: song['name']!,
                     author: song['artist']!,
                     imageUrl: song['image']!,
+                    onTap: () {
+                      _navigateToMusicPlayerPage(song);
+                    },
                   );
                 },
               ),

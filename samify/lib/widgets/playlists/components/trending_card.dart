@@ -4,12 +4,14 @@ class SongCard extends StatelessWidget {
   final String songName;
   final String author;
   final String imageUrl;
+   final VoidCallback onTap;
 
   const SongCard({
     Key? key,
     required this.songName,
     required this.author,
     required this.imageUrl,
+     required this.onTap,
   }) : super(key: key);
 
   @override

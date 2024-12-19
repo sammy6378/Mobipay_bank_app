@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:samify/providers/spotify_service.dart';
 import './components/trending_card.dart';
+import './music_player.dart';
 
 class TrendingSongs extends StatefulWidget {
   const TrendingSongs({Key? key}) : super(key: key);
@@ -17,6 +18,21 @@ class _TrendingSongsState extends State<TrendingSongs> {
     super.initState();
     _trendingSongs = SpotifyService.getTrendingSongs();
   }
+
+void _navigateToMusicPlayerPage(Map<String, String> song) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => MusicPlayerPage(
+        songTitle: song['name']!, // Use the song title from your list
+        artistName: song['artist']!, // Use the artist name from your list
+        imageUrl: song['image']!, // Use the image URL from your list
+        audioUrl: song['audioUrl']!, // The actual song URL to play
+      ),
+    ),
+  );
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +66,8 @@ class _TrendingSongsState extends State<TrendingSongs> {
                     return SongCard(
                       songName: song['songName']!,
                       author: song['author']!,
-                      imageUrl: song['imageUrl']!,
+                      imageUrl: song['image']!, // Add the required imageUrl argument
+                      onTap: () => _navigateToMusicPlayerPage(song),
                     );
                   },
                 ),
@@ -62,3 +79,4 @@ class _TrendingSongsState extends State<TrendingSongs> {
     );
   }
 }
+
