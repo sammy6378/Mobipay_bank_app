@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:samify/providers/spotify_service.dart';
+import './components/trending_card.dart';
 
-class TrendingSongs extends StatelessWidget {
-  final List<String> trendingSongs = [
-    'Trending Song 1',
-    'Trending Song 2',
-    'Trending Song 3',
-    'Trending Song 4',
-  ];
+class TrendingSongs extends StatefulWidget {
+  const TrendingSongs({Key? key}) : super(key: key);
 
-  TrendingSongs({super.key});
+  @override
+  _TrendingSongsState createState() => _TrendingSongsState();
+}
+
+class _TrendingSongsState extends State<TrendingSongs> {
+  late Future<List<Map<String, String>>> _trendingSongs;
+
+  @override
+  void initState() {
+    super.initState();
+    _trendingSongs = SpotifyService.getTrendingSongs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,37 +30,32 @@ class TrendingSongs extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 16),
-          SizedBox(
-            height: 150, // Fixed height for horizontal list
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: trendingSongs.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  margin: const EdgeInsets.only(left: 16),
-                  elevation: 4,
-                  child: SizedBox(
-                    width: 120,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.music_note,
-                          size: 48,
-                          color: Colors.blueAccent,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          trendingSongs[index],
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
+          FutureBuilder<List<Map<String, String>>>(
+            future: _trendingSongs,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('Failed to load trending songs'));
+              }
+
+              final songs = snapshot.data ?? [];
+              return SizedBox(
+                height: 180, // Adjusted for card height
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: songs.length,
+                  itemBuilder: (context, index) {
+                    final song = songs[index];
+                    return SongCard(
+                      songName: song['songName']!,
+                      author: song['author']!,
+                      imageUrl: song['imageUrl']!,
+                    );
+                  },
+                ),
+              );
+            },
           ),
         ],
       ),

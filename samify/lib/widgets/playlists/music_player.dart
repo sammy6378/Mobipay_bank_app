@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart'; // To handle audio playback
 
 class MusicPlayerPage extends StatefulWidget {
-  const MusicPlayerPage({super.key});
+  final String songTitle;
+  final String artistName;
+  final String imageUrl;
+  final String audioUrl; // URL of the song to play
+
+  const MusicPlayerPage({
+    super.key,
+    required this.songTitle,
+    required this.artistName,
+    required this.imageUrl,
+    required this.audioUrl,
+  });
 
   @override
   _MusicPlayerPageState createState() => _MusicPlayerPageState();
@@ -11,26 +23,42 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> {
   bool _isPlaying = false;
   double _currentPosition = 0.0;
   final double _duration = 240.0; // Example duration of 4 minutes (240 seconds)
+  late AudioPlayer _audioPlayer;
 
-  // For now, just mock data for song details
-  final String _songTitle = 'Song Title';
-  final String _artistName = 'Artist Name';
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+  }
 
-  // Dummy function to toggle play/pause
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  // Function to toggle play/pause
   void _togglePlayPause() {
     setState(() {
+      if (_isPlaying) {
+        _audioPlayer.pause();
+      } else {
+        _audioPlayer.setUrl(widget.audioUrl).then((_) {
+          _audioPlayer.play();
+        });
+      }
       _isPlaying = !_isPlaying;
     });
   }
 
-  // Dummy function to skip to the next song
+  // Skip to next song (reset for now)
   void _skipNext() {
     setState(() {
       _currentPosition = 0.0; // Reset position for the next song
     });
   }
 
-  // Dummy function to skip to the previous song
+  // Skip to previous song (reset for now)
   void _skipPrevious() {
     setState(() {
       _currentPosition = 0.0; // Reset position for the previous song
@@ -56,21 +84,23 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> {
                 shape: BoxShape.circle,
                 color: Colors.grey[300],
               ),
-              child: const Icon(
-                Icons.music_note,
-                size: 100,
-                color: Colors.white,
-              ),
+              child: widget.imageUrl.isNotEmpty
+                  ? Image.network(widget.imageUrl, fit: BoxFit.cover)
+                  : const Icon(
+                      Icons.music_note,
+                      size: 100,
+                      color: Colors.white,
+                    ),
             ),
             const SizedBox(height: 24),
             // Song Title and Artist
             Text(
-              _songTitle,
+              widget.songTitle,
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             const SizedBox(height: 8),
             Text(
-              _artistName,
+              widget.artistName,
               style: Theme.of(context).textTheme.titleSmall,
             ),
             const SizedBox(height: 32),
