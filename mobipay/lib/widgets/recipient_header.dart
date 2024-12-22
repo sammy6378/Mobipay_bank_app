@@ -6,11 +6,11 @@ class RecipientHeader extends StatelessWidget {
   final String? avatarUrl;
 
   const RecipientHeader({
-    Key? key,
+    super.key,
     required this.name,
     required this.accountNumber,
     this.avatarUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class RecipientHeader extends StatelessWidget {
           backgroundColor: Colors.blue.withOpacity(0.1),
           backgroundImage: avatarUrl != null ? AssetImage(avatarUrl!) : null,
           child: avatarUrl == null
-              ? Icon(Icons.person, size: 45, color: Colors.blue)
+              ? const Icon(Icons.person, size: 45, color: Colors.blue)
               : null,
         ),
         const SizedBox(height: 16),

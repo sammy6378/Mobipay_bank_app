@@ -3,6 +3,8 @@ import 'input.dart';
 import 'btn.dart';
 
 class WithdrawScreen extends StatefulWidget {
+  const WithdrawScreen({super.key});
+
   @override
   _WithdrawScreenState createState() => _WithdrawScreenState();
 }
@@ -19,10 +21,10 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
+        title: const Text(
           'Withdraw',
           style: TextStyle(
             color: Colors.black,
@@ -32,7 +34,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -40,7 +42,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
               controller: _amountController,
               label: 'Enter Amount',
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Text(
               'Quick Amount',
               style: TextStyle(
@@ -49,7 +51,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Wrap(
               spacing: 12,
               runSpacing: 12,
@@ -66,16 +68,16 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 );
               }).toList(),
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
               onPressed: () {},
-              child: Text('Withdraw Now'),
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
+              child: Text('Withdraw Now'),
             ),
           ],
         ),

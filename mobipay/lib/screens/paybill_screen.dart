@@ -39,10 +39,10 @@ class PayBillsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
+        title: const Text(
           'Pay Bills',
           style: TextStyle(
             color: Colors.black,
@@ -52,9 +52,9 @@ class PayBillsScreen extends StatelessWidget {
         ),
       ),
       body: ListView.separated(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         itemCount: bills.length,
-        separatorBuilder: (context, index) => SizedBox(height: 16),
+        separatorBuilder: (context, index) => const SizedBox(height: 16),
         itemBuilder: (context, index) {
           final bill = bills[index];
           return BillItem(

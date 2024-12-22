@@ -14,10 +14,10 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
+        title: const Text(
           'Profile',
           style: TextStyle(
             color: Colors.black,
@@ -27,14 +27,14 @@ class ProfileScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.edit, color: Colors.blue),
+            icon: const Icon(Icons.edit, color: Colors.blue),
             onPressed: () {},
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               // Profile Header
@@ -51,20 +51,20 @@ class ProfileScreen extends StatelessWidget {
                           width: 2,
                         ),
                       ),
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                         radius: 48,
                         backgroundImage: AssetImage("assets/images/html.jpg"),
                       ),
                     ),
-                    SizedBox(height: 16),
-                    Text(
+                    const SizedBox(height: 16),
+                    const Text(
                       'Samuel Mwangi',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       'samuelmwangi@gmail.com',
                       style: TextStyle(
@@ -75,10 +75,10 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               
               // Statistics
-              Row(
+              const Row(
                 children: [
                   Expanded(
                     child: ProfileStatCard(
@@ -105,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               
               // Actions
               Column(
@@ -116,7 +116,7 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.blue,
                     onTap: () {},
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   ProfileActionButton(
                     icon: Icons.notifications,
                     label: 'Notifications',
@@ -128,14 +128,14 @@ class ProfileScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   ProfileActionButton(
                     icon: Icons.security,
                     label: 'Security',
                     color: Colors.green,
                     onTap: () {},
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   ProfileActionButton(
                     icon: Icons.help,
                     label: 'Help Center',
@@ -145,10 +145,10 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               TextButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Log Out',
                   style: TextStyle(
                     color: Colors.red,

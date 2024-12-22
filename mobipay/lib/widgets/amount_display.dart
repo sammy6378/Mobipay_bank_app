@@ -5,10 +5,10 @@ class AmountDisplay extends StatelessWidget {
   final String? subtitle;
 
   const AmountDisplay({
-    Key? key,
+    super.key,
     required this.amount,
     this.subtitle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

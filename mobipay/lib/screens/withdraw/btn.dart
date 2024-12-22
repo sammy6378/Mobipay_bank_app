@@ -6,18 +6,18 @@ class QuickAmountButton extends StatelessWidget {
   final bool isSelected;
 
   const QuickAmountButton({
-    Key? key,
+    super.key,
     required this.amount,
     required this.onTap,
     this.isSelected = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         decoration: BoxDecoration(
           color: isSelected ? Colors.blue : Colors.grey[100],
           borderRadius: BorderRadius.circular(12),

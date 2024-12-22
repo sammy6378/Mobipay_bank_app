@@ -11,12 +11,12 @@ class TransferAmountScreen extends StatelessWidget {
   final double amount;
 
   const TransferAmountScreen({
-    Key? key,
+    super.key,
     required this.recipientName,
     required this.accountNumber,
     this.avatarUrl,
     this.amount = 320.00,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
