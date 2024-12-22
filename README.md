@@ -1,6 +1,3 @@
-Here's an updated version of your documentation with the correct Bash setup commands:
-
----
 
 # Mobipay
 
@@ -87,6 +84,3 @@ Contributions, issues, and feature requests are welcome! Feel free to open an is
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
---- 
-
-I’ve updated the Bash commands to correctly clone the repository and navigate into the project directory.
