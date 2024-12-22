@@ -1,4 +1,6 @@
+Here's an updated version of your documentation with the correct Bash setup commands:
 
+---
 
 # Mobipay
 
@@ -7,10 +9,8 @@ Mobipay is a modern and intuitive banking application built with Flutter and Dar
 ## Features
 
 - **Secure Login and Authentication**  
- *To be implemented*
+  *To be implemented*  
   Robust authentication system to protect user data.
-
- 
 
 - **Fund Transfers**  
   Send money effortlessly to friends, family, or business contacts.
@@ -43,7 +43,6 @@ Mobipay is a modern and intuitive banking application built with Flutter and Dar
   </tr>
 </table>
 
-
 ## Getting Started
 
 Follow these instructions to set up and run the Mobipay application on your local machine.
@@ -58,8 +57,8 @@ Follow these instructions to set up and run the Mobipay application on your loca
 
 1. Clone the repository:
    ```bash
-  https://github.com/sammy6378/Mobipay_bank_app.git
-   cd mobipay
+   git clone https://github.com/sammy6378/Mobipay_bank_app.git
+   cd Mobipay_bank_app
    ```
 
 2. Install dependencies:
@@ -87,3 +86,7 @@ Contributions, issues, and feature requests are welcome! Feel free to open an is
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+--- 
+
+I’ve updated the Bash commands to correctly clone the repository and navigate into the project directory.
