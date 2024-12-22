@@ -58,7 +58,7 @@ Follow these instructions to set up and run the Mobipay application on your loca
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repository/mobipay.git
+  [ git clone https://github.com/your-repository/mobipay.git](https://github.com/sammy6378/Mobipay_bank_app.git)
    cd mobipay
    ```
 
