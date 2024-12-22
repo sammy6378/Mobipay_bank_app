@@ -35,13 +35,14 @@ Mobipay is a modern and intuitive banking application built with Flutter and Dar
 
 ## Screenshots
 
-<table> 
-  <tr> 
-  <td><img src="https://github.com/user-attachments/assets/b1cf0de2-1bb7-406c-a817-84378e219bd5" alt="mobipay#1" width="200"/></td> 
-  <td><img src="https://github.com/user-attachments/assets/984a0aff-12d5-4496-a35f-8e6fc12f2654" alt="mobipay#2" width="200"/></td> 
-  <td><img src="https://github.com/user-attachments/assets/33e42af1-4869-4a56-ac1a-0726c86028d5" alt="mobipay#3" width="200"/></td> </tr> <tr>   
-  </tr> 
+<table style="width:100%; table-layout:fixed; border-collapse:collapse;">
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/b1cf0de2-1bb7-406c-a817-84378e219bd5" alt="mobipay#1" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/984a0aff-12d5-4496-a35f-8e6fc12f2654" alt="mobipay#2" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/33e42af1-4869-4a56-ac1a-0726c86028d5" alt="mobipay#3" width="200"/></td>
+  </tr>
 </table>
+
 
 ## Getting Started
 
