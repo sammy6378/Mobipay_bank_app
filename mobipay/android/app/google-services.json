@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "918856809855",
+    "project_id": "mobipay-58f1c",
+    "storage_bucket": "mobipay-58f1c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918856809855:android:728724b3272f310701ae4a",
+        "android_client_info": {
+          "package_name": "com.example.mobipay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8OmlVRR788xl8Tzm_hcYdI8wFavAfkTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
