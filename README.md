@@ -26,7 +26,8 @@ Mobipay is a modern and intuitive banking application built with Flutter and Dar
 ## Technologies Used
 
 - **Flutter**: For cross-platform app development (iOS and Android).  
-- **Dart**: The programming language for developing the app.  
+- **Dart**: The programming language for developing the app.
+- **Firebase**: For Authentication and Authorization
 - **State Management**: Efficient state management for a seamless user experience.  
 
 ## Screenshots
