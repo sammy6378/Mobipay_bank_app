@@ -5,8 +5,7 @@ Mobipay is a modern and intuitive banking application built with Flutter and Dar
 
 ## Features
 
-- **Secure Login and Authentication**  
-  *To be implemented*  
+- **Secure Login and Authentication**   
   Robust authentication system to protect user data.
 
 - **Fund Transfers**  
