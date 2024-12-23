@@ -22,7 +22,7 @@ class CreditCardsPage extends StatelessWidget {
                 const SizedBox(height: 16),
 
                 // Credit Card App Widget
-                const CreditCardList(),
+                CreditCardList(),
 
                 const SizedBox(height: 24),
 

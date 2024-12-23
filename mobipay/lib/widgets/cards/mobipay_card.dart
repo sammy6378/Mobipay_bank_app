@@ -95,8 +95,8 @@ class MobipayCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const Padding(
-              padding: EdgeInsets.all(10.0),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
               child: CreditCardList(),
             ),
           ],

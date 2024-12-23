@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CreditCardList extends StatelessWidget {
-  const CreditCardList({super.key});
+  CreditCardList({super.key});
+
+   final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class CreditCardList extends StatelessWidget {
           ],
           logoText: 'PayPal',
           cardNumber: '**** **** **** 1234',
-          cardHolder: 'Samuel Mwangi',
+          cardHolder: user?.displayName ?? 'User',
           expiryDate: '12/24',
         ),
         SizedBox(height: 20),
@@ -27,7 +30,7 @@ class CreditCardList extends StatelessWidget {
           ],
           logoText: 'Bank Inc.',
           cardNumber: '**** **** **** 5678',
-          cardHolder: 'Samuel Mwangi',
+          cardHolder: user?.displayName ?? 'User',
           expiryDate: '11/25',
         ),
       ],
