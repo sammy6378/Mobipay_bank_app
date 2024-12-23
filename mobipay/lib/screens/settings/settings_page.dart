@@ -42,14 +42,14 @@ class SettingsPage extends StatelessWidget {
           Center(
             child:  Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 40,
                   backgroundImage: AssetImage("assets/images/html.jpg"),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   user?.displayName ?? 'User',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.blue,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,

@@ -29,8 +29,8 @@ class AppInfoScreen extends StatelessWidget {
             const SizedBox(height: 32),
             const Divider(),
             const SizedBox(height: 16),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(Icons.info_outline, color: Colors.blue),
                 SizedBox(width: 16),
                 Text(
@@ -40,8 +40,8 @@ class AppInfoScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(Icons.developer_mode, color: Colors.green),
                 SizedBox(width: 16),
                 Text(
@@ -51,8 +51,8 @@ class AppInfoScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(Icons.email, color: Colors.red),
                 SizedBox(width: 16),
                 Text(
@@ -62,8 +62,8 @@ class AppInfoScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(Icons.phone, color: Colors.teal),
                 SizedBox(width: 16),
                 Text(

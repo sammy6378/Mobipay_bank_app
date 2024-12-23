@@ -82,7 +82,7 @@ class MobipayCard extends StatelessWidget {
               ),
             ),
             // Spacer for the rest of the UI
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             // Credit Card List Section
             
             // text for other cards
@@ -94,10 +94,10 @@ class MobipayCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: const CreditCardList(),
+            const SizedBox(height: 10),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
+              child: CreditCardList(),
             ),
           ],
         ),

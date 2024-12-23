@@ -18,6 +18,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isFormValid = false;
+  double _keyboardHeight = 0;
 
   @override
   void initState() {
@@ -26,15 +27,14 @@ class _SignInScreenState extends State<SignInScreen> {
     _passwordController.addListener(_validateForm);
   }
 
- 
-
+  // Function to validate the form
   void _validateForm() {
     setState(() {
-      _isFormValid = _emailController.text.isNotEmpty &&
-          _passwordController.text.isNotEmpty;
+      _isFormValid = _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
     });
   }
 
+  // Function to sign in the user
   Future<void> signIn() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -51,7 +51,7 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-   @override
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
@@ -60,6 +60,9 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the keyboard height
+    _keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -177,12 +180,15 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ),
           ),
-          const Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: WaveClipper(),
-          ),
+          // Adjusting WaveClipper visibility based on keyboard height
+          _keyboardHeight == 0
+              ? const Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: WaveClipper(),
+                )
+              : const SizedBox(),
         ],
       ),
     );

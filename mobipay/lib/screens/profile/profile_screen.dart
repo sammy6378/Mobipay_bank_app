@@ -124,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => PaymentMethodsScreen()),
+                            builder: (context) => const PaymentMethodsScreen()),
                       );
                     },
                   ),
@@ -149,7 +149,7 @@ class ProfileScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SecurityScreen()));
+                              builder: (context) => const SecurityScreen()));
                     },
                   ),
                   const SizedBox(height: 16),
@@ -162,7 +162,7 @@ class ProfileScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HelpCenterScreen(),
+                            builder: (context) => const HelpCenterScreen(),
                           ));
                     },
                   ),

@@ -177,28 +177,28 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               Text(
                                 user?.displayName ?? 'User',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 "Mobipay Expert",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14.0,
                                 ),
                               ),
-                              Spacer(),
-                              Text(
+                              const Spacer(),
+                              const Text(
                                 "4756  ••••  ••••  9018",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16.0,
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 "\$00.00",
                                 style: TextStyle(
                                   color: Colors.white,
@@ -236,7 +236,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ContactSelectionScreen()),
+                                builder: (context) => const ContactSelectionScreen()),
                           );
                         }),
                         _buildOption("Withdraw", Icons.money, Colors.blue, () {
