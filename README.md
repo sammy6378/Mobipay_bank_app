@@ -59,11 +59,63 @@ Mobipay is a modern and intuitive banking application built with Flutter and Dar
 
 Follow these instructions to set up and run the Mobipay application on your local machine.
 
-### Prerequisites
+Here's the updated list of **prerequisites** to include Firebase setup for a Flutter project:
 
-- Install Flutter: [Flutter Installation Guide](https://docs.flutter.dev/get-started/install)
-- Dart SDK
-- A code editor (e.g., VS Code, Android Studio)
+### **Prerequisites**
+
+1. **Install Flutter:**
+   - Follow the [Flutter Installation Guide](https://docs.flutter.dev/get-started/install) to install Flutter on your machine.
+   
+2. **Install Dart SDK:**
+   - Dart comes pre-installed with Flutter, so installing Flutter will automatically install Dart as well. However, if needed, you can install Dart separately by following the [Dart installation guide](https://dart.dev/get-dart).
+
+3. **Install a Code Editor:**
+   - Use a code editor like **VS Code** or **Android Studio** for Flutter development.
+     - [Install VS Code](https://code.visualstudio.com/Download)
+     - [Install Android Studio](https://developer.android.com/studio)
+
+4. **Install Firebase:**
+   - **Create a Firebase Project:**
+     - Go to [Firebase Console](https://console.firebase.google.com/), and click on "Add Project".
+     - Follow the steps to create your Firebase project.
+   - **Configure Firebase with Flutter:**
+     - Follow the instructions in the Firebase console to set up Firebase with your Flutter project.
+     - Add Firebase dependencies to your `pubspec.yaml` file:
+       ```yaml
+       dependencies:
+         firebase_core: ^1.10.0
+         firebase_auth: ^3.3.3 # For Authentication
+         # Include any other Firebase packages you need (e.g., Firestore, Firebase Database)
+       ```
+     - **Install Firebase SDK:** Ensure you have the Firebase SDK set up by running:
+       ```bash
+       flutter pub get
+       ```
+
+5. **Download the `google-services.json` File:**
+   - **Firebase Project Configuration:**
+     - In the Firebase Console, go to **Project Settings** > **General**.
+     - Scroll down to **Your apps** and select the Android app you want to configure.
+     - Download the `google-services.json` file.
+   - **Place the `google-services.json` File:**
+     - Place the downloaded `google-services.json` file in the `android/app` directory of your Flutter project.
+     - Make sure the file is located exactly in `project_directory/android/app/google-services.json`.
+
+6. **Set Up Firebase for Android:**
+   - Open `android/build.gradle` and add the following line in the `buildscript` section:
+     ```gradle
+     classpath 'com.google.gms:google-services:4.3.10'  // Add this line
+     ```
+   - In `android/app/build.gradle`, at the bottom of the file, add:
+     ```gradle
+     apply plugin: 'com.google.gms.google-services'  // Add this line
+     ```
+
+7. **Run the Project:**
+   - After completing the above steps, run your project using:
+     ```bash
+     flutter run
+     ```
 
 ### Setup Instructions
 
