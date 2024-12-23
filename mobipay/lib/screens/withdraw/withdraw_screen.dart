@@ -77,7 +77,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: Text('Withdraw Now'),
+              child: const Text('Withdraw Now'),
             ),
           ],
         ),

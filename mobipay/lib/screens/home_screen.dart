@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobipay/screens/paybill_screen.dart';
 import 'package:mobipay/screens/profile/profile_screen.dart';
@@ -9,8 +11,8 @@ import 'package:mobipay/widgets/ui_card.dart';
 import 'package:mobipay/screens/messages.dart';
 import 'settings/settings_page.dart';
 
-
-  Widget _buildOption(String title, IconData icon, Color color, VoidCallback onTap) {
+Widget _buildOption(
+    String title, IconData icon, Color color, VoidCallback onTap) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
@@ -41,7 +43,6 @@ import 'settings/settings_page.dart';
   );
 }
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -54,10 +55,10 @@ class _HomePageState extends State<HomePage> {
 
   // List of pages
   final List<Widget> _pages = [
-    const HomeScreen(),
+    HomeScreen(),
     MessagesPage(),
-   const ProfileScreen(),
-    const SettingsPage(),
+    ProfileScreen(),
+    SettingsPage(),
   ];
 
   @override
@@ -99,86 +100,191 @@ class _HomePageState extends State<HomePage> {
 
 // Original home screen content refactored into HomeScreen
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  Future<Map<String, dynamic>?> getUserData(String uid) async {
+    final doc =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    return doc.exists ? doc.data() : null;
+  }
+
+  Future<String> _fetchFullName() async {
+    if (user != null) {
+      final userData = user != null ? await getUserData(user!.uid) : null;
+      return userData?['fullName'] ?? 'User';
+    }
+    return 'User';
+  }
+
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 24.0),
-            const Text(
-              "Good Morning,\nSamuel!",
-              style: TextStyle(
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 24.0),
-            Center(
-              child: Stack(
+    return FutureBuilder<String>(
+        future: _fetchFullName(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return const Center(child: Text('Error loading user data'));
+          }
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Positioned(
-                    bottom: 8,
-                    left: 8,
-                    right: 8,
-                    child: Container(
-                      height: 180,
-                      decoration: BoxDecoration(
-                        color: Colors.orange.shade200,
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
+                  const SizedBox(height: 24.0),
+                  Text(
+                    "Good Morning,\n${user?.displayName ?? 'User'}!",
+                    style: const TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
-                  Container(
-                    height: 180,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Colors.blue.shade700, Colors.green],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(16.0),
-                    ),
-                    padding: const EdgeInsets.all(16.0),
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  const SizedBox(height: 24.0),
+                  Center(
+                    child: Stack(
                       children: [
-                        Text(
-                          "Samuel Mwangi",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                        Positioned(
+                          bottom: 8,
+                          left: 8,
+                          right: 8,
+                          child: Container(
+                            height: 180,
+                            decoration: BoxDecoration(
+                              color: Colors.orange.shade200,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
                           ),
                         ),
-                        Text(
-                          "OverBridge Expert",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14.0,
+                        Container(
+                          height: 180,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Colors.blue.shade700, Colors.green],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                user?.displayName ?? 'User',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Text(
+                                "OverBridge Expert",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14.0,
+                                ),
+                              ),
+                              const Spacer(),
+                              const Text(
+                                "4756  ••••  ••••  9018",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                              const Text(
+                                "\$3,469.52",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Spacer(),
-                        Text(
-                          "4756  ••••  ••••  9018",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                        Text(
-                          "\$3,469.52",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24.0),
+
+                  // Options Grid
+                  Expanded(
+                    child: GridView.count(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 16.0,
+                      mainAxisSpacing: 16.0,
+                      children: [
+                        _buildOption(
+                            "Account\nand Card",
+                            Icons.account_balance_wallet,
+                            Colors.deepPurple, () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CreditCardsPage()),
+                          );
+                        }),
+                        _buildOption("Transfer", Icons.swap_horiz, Colors.red,
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const TransferAmountScreen(
+                                        recipientName: 'John Doe',
+                                        accountNumber: '1234567890')),
+                          );
+                        }),
+                        _buildOption("Withdraw", Icons.money, Colors.blue, () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const WithdrawScreen()),
+                          );
+                        }),
+                        // _buildOption("Mobile\nrecharge", Icons.phone_android, Colors.orange,
+                        //  (){
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(builder: (context) => const RecentTransactionsScreen()),
+                        //     );
+                        //   }
+                        // ),
+                        _buildOption("Pay the bill", Icons.receipt, Colors.teal,
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PayBillsScreen()),
+                          );
+                        }),
+                        _buildOption(
+                            "Credit card", Icons.credit_card, Colors.amber, () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CreditCardsPage()),
+                          );
+                        }),
+                        _buildOption(
+                          "Transaction\nreport",
+                          Icons.list_alt,
+                          Colors.purple,
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      TransactionReportScreen()),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -186,79 +292,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 24.0),
-
-
-              // Options Grid
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 16.0,
-                  mainAxisSpacing: 16.0,
-                  children: [
-                    _buildOption("Account\nand Card", Icons.account_balance_wallet, Colors.deepPurple,
-                     (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const CreditCardsPage()),
-                        );
-                      }
-                    ),
-                    _buildOption("Transfer", Icons.swap_horiz, Colors.red,
-                     (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const TransferAmountScreen(recipientName: 'John Doe', accountNumber: '1234567890')),
-                        );
-                      }
-                    ),
-                    _buildOption("Withdraw", Icons.money, Colors.blue,
-                     (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => WithdrawScreen()),
-                        );
-                      }
-                    ),
-                    // _buildOption("Mobile\nrecharge", Icons.phone_android, Colors.orange,
-                    //  (){
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(builder: (context) => const RecentTransactionsScreen()),
-                    //     );
-                    //   }
-                    // ),
-                    _buildOption("Pay the bill", Icons.receipt, Colors.teal,
-                     (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>  PayBillsScreen()),
-                        );
-                      }
-                    ),
-                    _buildOption("Credit card", Icons.credit_card, Colors.amber,
-                      (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const CreditCardsPage()),
-                        );
-                      }
-                    ),
-                    _buildOption("Transaction\nreport", Icons.list_alt, Colors.purple,
-                    () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TransactionReportScreen()),
-                      );
-                },
-                    ),
-                  ],
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }
-

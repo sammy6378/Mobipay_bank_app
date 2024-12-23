@@ -5,6 +5,7 @@ import '../../widgets/auth_header.dart';
 import '../../widgets/wave_clipper.dart';
 import '../../constants/colors.dart';
 import '../../navigation/app_routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -25,18 +26,36 @@ class _SignInScreenState extends State<SignInScreen> {
     _passwordController.addListener(_validateForm);
   }
 
-  @override
+ 
+
+  void _validateForm() {
+    setState(() {
+      _isFormValid = _emailController.text.isNotEmpty &&
+          _passwordController.text.isNotEmpty;
+    });
+  }
+
+  Future<void> signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      Navigator.pushReplacementNamed(context, AppRoutes.homePage);
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())),
+        );
+      }
+    }
+  }
+
+   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
-  }
-
-  void _validateForm() {
-    setState(() {
-      _isFormValid = _emailController.text.isNotEmpty && 
-                     _passwordController.text.isNotEmpty;
-    });
   }
 
   @override
@@ -123,7 +142,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           const SizedBox(height: 24),
                           CustomButton(
                             text: 'Sign In',
-                            onPressed: _isFormValid ? () {} : null,
+                            onPressed: _isFormValid ? signIn : null,
                           ),
                           const SizedBox(height: 16),
                           Row(
@@ -158,11 +177,11 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ),
           ),
-         const Positioned(
+          const Positioned(
             bottom: 0,
             left: 0,
             right: 0,
-            child:  WaveClipper(),
+            child: WaveClipper(),
           ),
         ],
       ),

@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobipay/screens/messages.dart';
 import 'profile_card.dart';
 import 'profile_btn.dart';
 
+
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
+
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -57,16 +61,16 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Samuel Mwangi',
-                      style: TextStyle(
+                    Text(
+                      user?.displayName ?? 'User',
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'samuelmwangi@gmail.com',
+                      user?.email ?? '',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[600],
@@ -76,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              
+
               // Statistics
               const Row(
                 children: [
@@ -106,7 +110,7 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 32),
-              
+
               // Actions
               Column(
                 children: [
@@ -122,7 +126,7 @@ class ProfileScreen extends StatelessWidget {
                     label: 'Notifications',
                     color: Colors.orange,
                     onTap: () {
-                       Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => MessagesPage()),
                       );
@@ -144,11 +148,27 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              
+
               const SizedBox(height: 32),
               TextButton(
-                onPressed: () {},
-                child: const Text(
+                onPressed: () async {
+                    try {
+                      // Sign out the user
+                      await FirebaseAuth.instance.signOut();
+
+                      // Navigate back to the login
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/sign-in', 
+                        (route) => false,
+                      );
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Error signing out: $e')),
+                      );
+                    }
+                  },
+                  child: const Text(
                   'Log Out',
                   style: TextStyle(
                     color: Colors.red,

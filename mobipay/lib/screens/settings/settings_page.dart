@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobipay/screens/home_screen.dart';
 import 'package:mobipay/screens/profile/profile_screen.dart';
@@ -5,7 +6,9 @@ import 'package:mobipay/screens/settings/change_password.dart';
 import '../../widgets/setting_tile.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+   SettingsPage({super.key});
+
+   final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +37,17 @@ class SettingsPage extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 20),
-          const Center(
+          Center(
             child:  Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 40,
                   backgroundImage: AssetImage("assets/images/html.jpg"),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  'Samuel Mwangi',
-                  style: TextStyle(
+                  user?.displayName ?? 'User',
+                  style: const TextStyle(
                     color: Colors.blue,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -68,7 +71,7 @@ class SettingsPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProfileScreen()),
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
               );
             },
           ),
