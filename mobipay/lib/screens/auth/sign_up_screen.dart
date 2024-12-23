@@ -181,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(height: 32),
               CustomTextField(
                 controller: _usernameController,
-                hintText: 'username',
+                hintText: 'Full Name',
                 prefixIcon: Icons.person_outline,
               ),
               const SizedBox(height: 16),

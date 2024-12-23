@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/recipient_header.dart';
 import '../../widgets/amount_display.dart';
-import '../../widgets/balance_card.dart';
+import '../../widgets/cards/balance_card.dart';
 import 'success_screen.dart';
 
 class TransferAmountScreen extends StatelessWidget {
@@ -54,7 +54,7 @@ class TransferAmountScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               const BalanceCard(
-                cardNumber: '2236',
+                cardNumber: '9018',
                 balance: 5300.00,
               ),
               const Spacer(),

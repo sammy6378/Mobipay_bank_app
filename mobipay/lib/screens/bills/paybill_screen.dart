@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/bill_item.dart';
+import '../../widgets/bill_item.dart';
 
 class PayBillsScreen extends StatelessWidget {
   final List<Map<String, dynamic>> bills = [

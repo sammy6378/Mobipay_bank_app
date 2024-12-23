@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mobipay/screens/paybill_screen.dart';
+import 'package:mobipay/screens/bills/paybill_screen.dart';
 import 'package:mobipay/screens/profile/profile_screen.dart';
-// import 'package:mobipay/screens/transcations/recent_transcations.dart';
+import 'package:mobipay/screens/transcations/contact_list.dart';
 import 'package:mobipay/screens/transcations/transcation_report.dart';
-import 'package:mobipay/screens/transcations/transfer_cash.dart';
-import 'package:mobipay/screens/withdraw/withdraw_screen.dart';
-import 'package:mobipay/widgets/ui_card.dart';
-import 'package:mobipay/screens/messages.dart';
+import 'package:mobipay/screens/withdraw/account_select.dart';
+import 'package:mobipay/widgets/cards/mobipay_card.dart';
+import 'package:mobipay/widgets/cards/ui_card.dart';
+import 'package:mobipay/screens/messages/messages.dart';
 import 'settings/settings_page.dart';
 
 Widget _buildOption(
@@ -177,29 +177,29 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               Text(
                                 user?.displayName ?? 'User',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                "OverBridge Expert",
+                              Text(
+                                "Mobipay Expert",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14.0,
                                 ),
                               ),
-                              const Spacer(),
-                              const Text(
+                              Spacer(),
+                              Text(
                                 "4756  ••••  ••••  9018",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16.0,
                                 ),
                               ),
-                              const Text(
-                                "\$3,469.52",
+                              Text(
+                                "\$00.00",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 24.0,
@@ -236,27 +236,17 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const TransferAmountScreen(
-                                        recipientName: 'John Doe',
-                                        accountNumber: '1234567890')),
+                                builder: (context) => ContactSelectionScreen()),
                           );
                         }),
                         _buildOption("Withdraw", Icons.money, Colors.blue, () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const WithdrawScreen()),
+                                builder: (context) => const AccountSelectionScreen()),
                           );
                         }),
-                        // _buildOption("Mobile\nrecharge", Icons.phone_android, Colors.orange,
-                        //  (){
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(builder: (context) => const RecentTransactionsScreen()),
-                        //     );
-                        //   }
-                        // ),
+                      
                         _buildOption("Pay the bill", Icons.receipt, Colors.teal,
                             () {
                           Navigator.push(
@@ -270,7 +260,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CreditCardsPage()),
+                                builder: (context) => MobipayCard()),
                           );
                         }),
                         _buildOption(

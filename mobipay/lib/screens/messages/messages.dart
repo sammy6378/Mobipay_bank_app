@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/contact.dart';
-import '../widgets/message_tile.dart';
+import '../../models/contact.dart';
+import '../../widgets/message_tile.dart';
 
 class MessagesPage extends StatelessWidget {
   final List<Message> messages = [

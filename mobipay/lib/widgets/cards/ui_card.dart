@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobipay/widgets/paypal_card.dart';
+import 'package:mobipay/widgets/cards/paypal_card.dart';
 
 class CreditCardsPage extends StatelessWidget {
   const CreditCardsPage({super.key});

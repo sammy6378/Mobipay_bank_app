@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mobipay/screens/messages.dart';
+import 'package:mobipay/screens/messages/messages.dart';
+import 'package:mobipay/screens/profile/help_center.dart';
+import 'package:mobipay/screens/profile/payment_methods.dart';
+import 'package:mobipay/screens/profile/security_screen.dart';
 import 'profile_card.dart';
 import 'profile_btn.dart';
-
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -57,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       child: const CircleAvatar(
                         radius: 48,
-                        backgroundImage: AssetImage("assets/images/html.jpg"),
+                        backgroundImage: AssetImage("assets/images/default.png"),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -118,7 +120,13 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.account_balance_wallet,
                     label: 'Payment Methods',
                     color: Colors.blue,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PaymentMethodsScreen()),
+                      );
+                    },
                   ),
                   const SizedBox(height: 16),
                   ProfileActionButton(
@@ -137,14 +145,26 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.security,
                     label: 'Security',
                     color: Colors.green,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SecurityScreen()));
+                    },
                   ),
                   const SizedBox(height: 16),
                   ProfileActionButton(
                     icon: Icons.help,
                     label: 'Help Center',
                     color: Colors.purple,
-                    onTap: () {},
+                    onTap: () {
+                      // Navigate to Help Center
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HelpCenterScreen(),
+                          ));
+                    },
                   ),
                 ],
               ),
@@ -152,23 +172,23 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 32),
               TextButton(
                 onPressed: () async {
-                    try {
-                      // Sign out the user
-                      await FirebaseAuth.instance.signOut();
+                  try {
+                    // Sign out the user
+                    await FirebaseAuth.instance.signOut();
 
-                      // Navigate back to the login
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        '/sign-in', 
-                        (route) => false,
-                      );
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Error signing out: $e')),
-                      );
-                    }
-                  },
-                  child: const Text(
+                    // Navigate back to the login
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/sign-in',
+                      (route) => false,
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error signing out: $e')),
+                    );
+                  }
+                },
+                child: const Text(
                   'Log Out',
                   style: TextStyle(
                     color: Colors.red,

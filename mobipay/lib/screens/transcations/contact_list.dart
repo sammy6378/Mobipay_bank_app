@@ -7,10 +7,10 @@ class ContactSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final contacts = [
-      {'name': 'Jane Cooper', 'image': 'assets/images/1.jpg'},
-      {'name': 'Wade Warren', 'image': 'assets/images/1.jpg'},
-      {'name': 'Esther Howard', 'image': 'assets/images/1.jpg'},
-      {'name': 'Cameron Williamson', 'image': 'assets/images/1.jpg'},
+      {'name': 'John Cooper', 'image': 'assets/images/1.jpg'},
+      {'name': 'Wade Warren', 'image': 'assets/images/2.jpg'},
+      {'name': 'Esther Howard', 'image': 'assets/images/doctor-1.jpg'},
+      {'name': 'Cameron Williamson', 'image': 'assets/images/doctor-3.jpg'},
       // Add more contacts as needed
     ];
 

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'input.dart';
 import 'btn.dart';
+import 'success_screen.dart';
 
 class WithdrawScreen extends StatefulWidget {
-  const WithdrawScreen({super.key});
+  final String account;
+
+  const WithdrawScreen({super.key, required this.account});
 
   @override
   _WithdrawScreenState createState() => _WithdrawScreenState();
@@ -38,6 +41,11 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text(
+              'Account: ${widget.account}',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
             AmountInput(
               controller: _amountController,
               label: 'Enter Amount',
@@ -70,7 +78,12 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
             ),
             const Spacer(),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SuccessScreen()),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
